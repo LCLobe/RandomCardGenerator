@@ -1,1 +1,27 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+h1 {
+  font-size: 120px;
+}
+h2 {
+  font-size: 90px;
+}
+
+.card {
+  height: 350px;
+  width: 230px;
+}
+
+.spade,
+.club,
+.black {
+  color: black;
+}
+.heart,
+.diamond,
+.red {
+  color: red;
+}
+
+.number {
+}
