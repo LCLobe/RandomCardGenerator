@@ -21,26 +21,41 @@ window.onload = function() {
     "Q",
     "K"
   ];
-
   const generateRandom = array => {
     let randomIndex = Math.floor(Math.random() * array.length);
-
     return array[randomIndex];
+  };
+
+  const colorFormatingByCardClub = obtainedCardClub => {
+    if (obtainedCardClub === "♦" || obtainedCardClub === "♥") {
+      return "red";
+    }
+    return "black";
   };
 
   const render = () => {
     const cardClub = document.querySelectorAll(`.strip`);
     const cardValue = document.querySelector(`.value`);
 
-    const obtainedCardvalue = generateRandom(arrayOfClubs);
-    cardClub.forEach(element => (element.innerText = `${obtainedCardvalue}`));
+    const obtainedCardClub = generateRandom(arrayOfClubs);
+    cardClub.forEach(element => {
+      element.innerText = `${obtainedCardClub}`;
+      element.style.color = colorFormatingByCardClub(obtainedCardClub);
+    });
+
     cardValue.innerText = `${generateRandom(arrayOfValue)}`;
+    //cardValue.style.color = colorFormatingByCardClub(obtainedCardClub);
+    if (colorFormatingByCardClub(obtainedCardClub) === "red") {
+      cardValue.classList.remove("black");
+      cardValue.classList.add("red");
+    } else {
+      cardValue.classList.remove("red");
+      cardValue.classList.add("black");
+    }
   };
 
   render();
 
-  const buttomRefresh = document.getElementsByClassName(`buttom`);
-  for (const element of buttomRefresh) {
-    element.addEventListener(`click`, render);
-  }
+  const myButton = document.querySelector(`#myButton`);
+  myButton.addEventListener("click", render);
 };
